@@ -1,0 +1,33 @@
+{
+  "title": "ACM Dashboard (Sample Data)",
+  "updatedAt": "2026-02-07T08:00:00.000Z",
+  "theme": {
+    "accent": "#7c3aed"
+  },
+  "widgets": [
+    {
+      "id": "welcome",
+      "label": "Welcome",
+      "value": "Hello, ACM!",
+      "hint": "This is coming from a local JSON file for now."
+    },
+    {
+      "id": "workshop",
+      "label": "Workshop Step",
+      "value": "JSON → UI",
+      "hint": "Next we’ll swap this to FastAPI."
+    },
+    {
+      "id": "number",
+      "label": "Fun number",
+      "value": "42",
+      "hint": "Try changing this value and see it update."
+    },
+    {
+      "id": "status",
+      "label": "API status",
+      "value": "Not connected",
+      "hint": "Later: this will come from GET /api/status."
+    }
+  ]
+}
