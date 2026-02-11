@@ -14,7 +14,7 @@ def compute_next_widget_value() -> str:
     - For now, this does nothing.
     - Later, you can compute something dynamic (random number, uptime, etc.).
     """
-    pass  # TODO: implement later
+    return "Not implemented yet"  # TODO: implement later
 
 
 @app.get("/api/status")

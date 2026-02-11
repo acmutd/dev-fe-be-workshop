@@ -1,42 +1,42 @@
-// src/App.jsx
+/* eslint-disable */
 import { useMemo, useState, useEffect } from "react";
 import { WidgetCard } from "./components/WidgetCard.jsx";
 import { FALLBACK_ACCENT, FALLBACK_TITLE } from "./config.js";
 
-// Vite can import JSON files directly.
+// Start with local JSON to visualize the structure first.
 import sampleStatus from "./data/status.sample.json";
 
 export default function App() {
-  // Start with local JSON so students can visualize the structure first.
-  // WORKSHOP TODO (Step 2a): Replace this with data from fetch("/api/status")
+  // Step 2a: Start with sample data, then replace with backend JSON from fetch("/api/status")
   const [data, setData] = useState(sampleStatus);
-  
-  // WORKSHOP TODO (Step 2b): Add loading state
-  // const [loading, setLoading] = useState(false);
-  
-  // WORKSHOP TODO (Step 2c): Add error state  
-  // const [error, setError] = useState(null);
 
-  // WORKSHOP TODO (Step 2a): Add useEffect to fetch data on component mount
+  // Step 2b: Add loading state (boolean)
+  // TODO: const [loading, setLoading] = useState(false);
+
+  // Step 2c: Add error state (string or null)
+  // TODO: const [error, setError] = useState(null);
+
+  // Step 2a: Implement fetchStatus()
+  // Outline:
+  // 1) setLoading(true)
+  // 2) setError(null)
+  // 3) const response = await fetch("/api/status")
+  // 4) If response.ok is false, throw an Error that includes response.status
+  // 5) const json = await response.json()
+  // 6) setData(json)
+  // 7) catch (err): setError(err.message)
+  // 8) finally: setLoading(false)
+  //
+  // TODO: const fetchStatus = async () => { ... };
+
+  // Step 2a: Fetch once on mount using useEffect
+  // Outline:
+  // - useEffect(() => { fetchStatus(); }, []);
+  //
+  // TODO: uncomment once fetchStatus exists and works
   // useEffect(() => {
   //   fetchStatus();
   // }, []);
-
-  // WORKSHOP TODO (Step 2a): Create fetchStatus function
-  // const fetchStatus = async () => {
-  //   try {
-  //     setLoading(true);
-  //     setError(null);
-  //     const response = await fetch("/api/status");
-  //     if (!response.ok) throw new Error("Failed to fetch");
-  //     const result = await response.json();
-  //     setData(result);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const accent = useMemo(() => {
     return data?.theme?.accent ?? FALLBACK_ACCENT;
@@ -48,21 +48,23 @@ export default function App() {
         <div>
           <div className="title">{data?.title ?? FALLBACK_TITLE}</div>
           <div className="subtitle">
-            Updated: {data?.updatedAt ? new Date(data.updatedAt).toLocaleString() : "—"}
+            Updated:{" "}
+            {data?.updatedAt ? new Date(data.updatedAt).toLocaleString() : "—"}
           </div>
         </div>
 
         <div className="actions">
-          {/* WORKSHOP TODO (Step 2d): Replace onClick with fetchStatus() call */}
+          {/* Step 2d: Replace this “Fake Refresh” with fetchStatus(), and disable the button while loading */}
           <button
             className="btn"
             onClick={() => setData({ ...data, updatedAt: new Date().toISOString() })}
-            // disabled={loading} // TODO: Uncomment when you add loading state
+            // TODO: disabled={loading}
           >
-            {/* {loading ? "Loading..." : "Refresh"} // TODO: Uncomment when you add loading state */}
+            {/* TODO: {loading ? "Loading..." : "Refresh"} */}
             Fake Refresh
           </button>
-          {/* Later you can change this link to /api/status */}
+
+          {/* Later: point this to /api/status so you can see the real backend JSON */}
           <a
             className="link"
             href="/src/data/status.sample.json"
@@ -75,22 +77,24 @@ export default function App() {
       </header>
 
       <main className="grid">
-        {/* WORKSHOP TODO (Step 2b): Show loading state */}
-        {/* {loading && <div className="loading">Loading dashboard...</div>} */}
-        
-        {/* WORKSHOP TODO (Step 2c): Show error state */}
-        {/* {error && <div className="error">Error: {error}</div>} */}
-        
-        {/* WORKSHOP TODO (Step 2b): Only show widgets when not loading */}
-        {/* {!loading && !error && (data?.widgets ?? []).map((w) => ( */}
+        {/* Step 2b: Show a loading UI when loading is true */}
+        {/* TODO: {loading && <div className="loading">Loading dashboard...</div>} */}
+
+        {/* Step 2c: Show an error UI when error is not null */}
+        {/* TODO: {error && <div className="error">Error: {error}</div>} */}
+
+        {/* Step 2b/c: Only render widgets when NOT loading and there is NO error */}
+        {/* Outline:
+            - if (loading) show loading
+            - else if (error) show error
+            - else map widgets
+        */}
         {(data?.widgets ?? []).map((w) => (
           <WidgetCard key={w.id} label={w.label} value={w.value} hint={w.hint} />
         ))}
-        {/* ))} */}
       </main>
 
       <footer className="footer">
-        {/* WORKSHOP TODO: Update this message as you complete each step */}
         Next step: replace sample data with <code>fetch("/api/status")</code>.
       </footer>
     </div>
