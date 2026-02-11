@@ -49,5 +49,13 @@ async def get_status() -> dict[str, Any]:
                 "value": "Not implemented yet",
                 "hint": "Fill in compute_next_widget_value() later",
             },
+            # WORKSHOP TODO (Task 1): Add your own widget here!
+            # Example:
+            # {
+            #     "id": "my_widget",
+            #     "label": "My Custom Widget",
+            #     "value": "Hello World!",
+            #     "hint": "This is my new widget"
+            # },
         ],
     }
