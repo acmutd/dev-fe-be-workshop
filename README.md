@@ -64,14 +64,15 @@ We recommend a virtual environment so installs don’t mess with global Python.
 ```bash
 cd api
 python -m venv .venv
+python -m pip install fastapi
 
 # macOS/Linux:
 source .venv/bin/activate
 # Windows PowerShell:
 # .\.venv\Scripts\Activate.ps1
 
-python -m pip install -r requirements.txt
 cd ..
+python -m pip install -r requirements.txt
 ```
 
 ---
@@ -80,6 +81,7 @@ cd ..
 
 ### Terminal tab 1: backend (FastAPI)
 ```bash
+python -m pip install uvicorn
 cd api
 uvicorn main:app --reload --port 8000
 ```
@@ -111,7 +113,7 @@ That JSON is what your frontend displays.
 ### Task 1: Backend edit (add a widget)
 Edit: `api/main.py`
 - Add a new item to the `widgets` list in the JSON response.
-- Save → refresh the frontend → the new card should appear.
+- After later setup, these details will display on our frontend.
 
 ### Task 2: Frontend edit (render it)
 Edit: `src/App.jsx`
