@@ -64,7 +64,6 @@ We recommend a virtual environment so installs don’t mess with global Python.
 ```bash
 cd api
 python -m venv .venv
-python -m pip install fastapi
 
 # macOS/Linux:
 source .venv/bin/activate
@@ -81,7 +80,6 @@ python -m pip install -r requirements.txt
 
 ### Terminal tab 1: backend (FastAPI)
 ```bash
-python -m pip install uvicorn
 cd api
 uvicorn main:app --reload --port 8000
 ```
@@ -150,3 +148,8 @@ If you change backend port, update `vite.config.js` proxy target to match
 - Confirm backend is running on the expected port.
 - Confirm Vite proxy is set (`server.proxy`). 
 - If you skipped proxy, enable FastAPI CORS middleware. 
+
+### Can't find `uvicorn` (or `fastapi`)
+- Update pip with `python -m pip install --upgrade pip`
+- Reinstall uvicorn manually `python -m pip install uvicorn`
+- Reinstall FastAPI manually `python -m pip install fastapi`
